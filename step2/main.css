@@ -10,6 +10,10 @@ body > header {
   font-family: Impact, Verdana, Geneva, sans-serif;
   background-color: coral;
 }
+body > header nav {
+  background-color: black;
+  color: bisque;
+}
 body > footer {
   font-family: Impact, Verdana, Geneva, sans-serif;
   background-color: darkseagreen;
