@@ -29,7 +29,7 @@ body > section article footer {
   font-family: gillius_adfcondensed, Impact, Verdana, Geneva, sans-serif;
 }
 /*
- * colors.less
+ * colors-nice.less
  */
 body {
   background-color: #444;
@@ -40,6 +40,12 @@ body > header {
 body > header nav {
   background-color: black;
   color: bisque;
+}
+body > header nav a {
+  color: bisque;
+}
+body > header nav a:hover {
+  color: chocolate;
 }
 body > footer {
   background-color: darkseagreen;
@@ -52,9 +58,6 @@ body > section article footer {
 }
 body > section aside {
   background-color: #eee;
-}
-body > section aside menu {
-  background-color: burlywood;
 }
 body > section aside menu a {
   background-color: cadetblue;
