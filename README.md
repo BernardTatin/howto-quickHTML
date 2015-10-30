@@ -6,7 +6,7 @@ How to make a quick and nice HTML/CSS page? It's not so hard. I've done all this
 
 First, I use [Brackets](http://brackets.io/), the best editor for the Web which works everywhere, and [Less](http://lesscss.org/), a CSS preprocessor who can produce CSS directly from [Brackets](http://brackets.io/).
 
-When _Brackets_ works, be sure you have two extensions for lesss :
+When _Brackets_ works, be sure you have two extensions for _Less_ :
  - _LESS AutoCompile_, to compile _Less_ files on saving,
  - _LessHints_, which helps you to complete names.
 
