@@ -83,16 +83,18 @@ body > section {
     h2, h3, h4 {
         line-height: 1.6em;
     }
+    p,
+    li {
+        text-align: justify;
+        line-height: 1.4em;
+    }
+    p {
+        margin: 0.1em 0.3em 0.9em 0.3em;
+    }
     article {
-        margin: 1em;
+        // margin: 1em;
+        padding: 1em;
         max-width: 560px;
-        p, li {
-            text-align: justify;
-            line-height: 1.4em;
-        }
-        p {
-            margin: 0.1em 0.3em 0.9em 0.3em;
-        }
         footer {
             line-height: 1.9em;
         }
@@ -105,10 +107,11 @@ body > section {
         }
     }
     aside {
-        margin: 1em;
+        padding: 1em;
         max-width: 200px;
     }
 }
+
 // ======================================================================
 // positions
 body > section {
@@ -123,6 +126,7 @@ body > section {
 body > footer {
     clear: both;
 }
+
 // ======================================================================
 // more about nav and aside menu
 body > header {
@@ -146,4 +150,3 @@ body > section {
         }
     }
 }
-

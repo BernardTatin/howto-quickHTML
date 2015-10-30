@@ -76,17 +76,17 @@ body > section h3,
 body > section h4 {
   line-height: 1.6em;
 }
-body > section article {
-  margin: 1em;
-  max-width: 560px;
-}
-body > section article p,
-body > section article li {
+body > section p,
+body > section li {
   text-align: justify;
   line-height: 1.4em;
 }
-body > section article p {
+body > section p {
   margin: 0.1em 0.3em 0.9em 0.3em;
+}
+body > section article {
+  padding: 1em;
+  max-width: 560px;
 }
 body > section article footer {
   line-height: 1.9em;
@@ -99,7 +99,7 @@ body > section article ul li {
   margin-left: 1em;
 }
 body > section aside {
-  margin: 1em;
+  padding: 1em;
   max-width: 200px;
 }
 body > section article {
