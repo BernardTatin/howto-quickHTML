@@ -1,0 +1,24 @@
+/*
+ * width.less
+ */
+@maxSectionWidth: 960px;
+@maxArticleWidth: 560px;
+@maxAsideWidth: 200px;
+
+body > header {
+    width: 100%;
+}
+
+body > footer {
+    width: 100%;
+}
+
+body > section {
+    max-width: @maxSectionWidth;
+    article {
+        max-width: @maxArticleWidth;
+    }
+    aside {
+        max-width: @maxAsideWidth;
+    }
+}
