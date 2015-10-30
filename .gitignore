@@ -1,3 +1,7 @@
 .brackets.json
 package.json
 .*.swp
+fonts/*/*.eot
+fonts/*/*.svg
+fonts/*/*.ttf
+fonts/*/*.woff
