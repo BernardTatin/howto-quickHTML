@@ -1,0 +1,146 @@
+/*
+ * main.less, step 3
+ */
+
+// ======================================================================
+// colors and fonts
+body {
+    background-color: #444;
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+body > header {
+    font-family: Impact, Verdana, Geneva, sans-serif;
+    background-color: coral;
+    nav {
+        background-color: black;
+        color: bisque;
+    }
+}
+
+body > footer {
+    font-family: Impact, Verdana, Geneva, sans-serif;
+    background-color: darkseagreen;
+}
+
+body > section {
+    h1, h2, h3, h4 {
+        font-family: Impact, Verdana, Geneva, sans-serif;
+    }
+    pre,
+    code {
+        font-family: "Courier New", Courier, monospace;
+    }
+    article {
+        background-color: #eee;
+        footer {
+            background-color: darksalmon;
+        }
+    }
+    aside {
+        background-color: #eee;
+        menu {
+            background-color: burlywood;
+            a {
+                background-color: cadetblue;
+            }
+        }
+    }
+}
+
+// ======================================================================
+// dimensions and margins
+body {
+    margin: auto;
+}
+
+body > header {
+    width: 100%;
+    margin: 0 auto 1em auto;
+    h1 {
+        margin: 0 0.3em 0.3em 0.3em;
+        font-size: 2em;
+        line-height: 1.9em;
+    }
+    p {
+        margin: 0 0.3em 0.3em 0.3em;
+        line-height: 1.5em;
+    }
+    nav {
+        line-height: 1.9em;
+    }
+}
+
+body > footer {
+    margin: 1em 0.3em 0.3em 0.3em;
+    width: 100%;
+    line-height: 1.9em;
+}
+
+body > section {
+    max-width: 960px;
+    margin: 1em auto;
+    h2, h3, h4 {
+        line-height: 1.6em;
+    }
+    article {
+        margin: 1em;
+        max-width: 560px;
+        p, li {
+            text-align: justify;
+            line-height: 1.4em;
+        }
+        p {
+            margin: 0.1em 0.3em 0.9em 0.3em;
+        }
+        footer {
+            line-height: 1.9em;
+        }
+        ul {
+            list-style-type: disc;
+            list-style-position: inside;
+            li {
+                margin-left: 1em;
+            }
+        }
+    }
+    aside {
+        margin: 1em;
+        max-width: 200px;
+    }
+}
+// ======================================================================
+// positions
+body > section {
+    article {
+        float: left;
+    }
+    aside {
+        float: right;
+    }
+}
+
+body > footer {
+    clear: both;
+}
+// ======================================================================
+// more about nav and aside menu
+body > header {
+    nav {
+        a {
+            border-right: 2px solid #ccc;
+            margin: inherit 1em;
+        }
+    }
+}
+
+body > section {
+    aside {
+        menu {
+            a {
+                display: block;
+            }
+        }
+    }
+}
+
