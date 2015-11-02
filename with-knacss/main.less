@@ -1,0 +1,37 @@
+// ======================================================================
+// main.less
+// ======================================================================
+// add missing styles :
+.txtjustify {
+    text-align: justify;
+}
+//
+@import "../common/font-nice-names.less";
+@import "../common/fonts.less";
+@import "../common/colors-nice.less";
+@import "../common/nav-menus.less";
+body > section {
+    margin: 0em auto;
+    article {
+        padding: 1em;
+        p {
+            text-align: justify;
+            word-wrap: break-word;
+            -webkit-hyphens: auto;
+            -moz-hyphens: auto;
+            -ms-hyphens: auto;
+            hyphens: auto;
+        }
+    }
+    aside {
+        padding: 1em;
+        p {
+            text-align: left;
+            word-wrap: break-word;
+            -webkit-hyphens: auto;
+            -moz-hyphens: auto;
+            -ms-hyphens: auto;
+            hyphens: auto;
+        }
+    }
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>With KNACSS</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="A simple test">
+    <meta name="keywords" content="">
+    <link href="knacss.css" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1>With KNACSS</h1>
+        <p>That's nice? well, it's readable!</p>
+        <nav>
+            <a>Home</a><a>Nice stuff</a><a>about</a>
+        </nav>
+    </header>
+    <section  class="flex-container w960p">
+        <aside class="w200p">
+            <h2>the menu</h2>
+            <menu>
+                <a>one link</a>
+                <a>two link</a>
+                <a>three links</a>
+            </menu>
+            <p>Some interesting text telling how clever and useful is this menu. You <em>must</em> click on some of these items to see more wonderful text.</p>
+        </aside>
+        <article  class="w500p">
+            <h2>some words</h2>
+            <h3>in step 3, we said that</h3>
+            <p>To suppress these margins, we use a <code>reset.css</code> you can get <a href="http://meyerweb.com/eric/tools/css/reset/">here</a>. The discussion about the goal of a reset stylesheet must be read.</p>
+            <p>I think you can't read anything, that's because <code>reset.css</code> do its job and do it well...</p>
+            <h3>giving dimensions</h3>
+            <p>We will give dimensions to each elements : the width or the maximum width.</p>
+            <ul>
+                <li><code>body</code>: we don't touch it, just say its margins are <code>auto</code>,</li>
+                <li><code>header</code>: we give </li>
+            </ul>
+            <p>The structure is always the following:</p>
+            <ul>
+                <li><code>body</code>
+                    <ul>
+                        <li>a <code>header</code>
+                            <ul>
+                                <li>with a title, some text and pictures</li>
+                                <li>a navigation bar for the main parts of the site</li>
+                            </ul>
+                        </li>
+                        <li>a <code>section</code>
+                            <ul>
+                                <li>an <code>article</code>
+                                    <ul>
+                                        <li>with some nice text and pictures,</li>
+                                        <li>a <code>footer</code> with the author name or anything else</li>
+                                    </ul>
+                                </li>
+                                <li>an <code>aside</code>
+                                    <ul>
+                                        <li>with a <code>menu</code></li>
+                                        <li>and some other text or pictures</li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li>the final <code>footer</code></li>
+                    </ul>
+                </li>
+            </ul>
+            <p>I want that <code>article</code> and <code>aside</code> are side by side.</p>
+            <footer>October 2015</footer>
+        </article>
+    </section>
+    <footer>that's all, folks!</footer>
+</body>
+
+</html>
