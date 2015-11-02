@@ -31,4 +31,5 @@ do
     cd $d
     echo "in $d ..."
     lessc main.less main.css
+    cd -
 done
