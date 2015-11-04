@@ -1,6 +1,7 @@
 // ======================================================================
 // main.less
 // ======================================================================
+@import (inline) "knacss.css";
 // add missing styles :
 .txtjustify {
     text-align: justify;
@@ -11,10 +12,11 @@
 @import "../common/colors-nice.less";
 @import "../common/nav-menus.less";
 body > section {
-    margin: 0em auto;
+    margin: auto;
+    max-width: 760px;
     article {
-        padding: 1em;
-        p {
+        padding: 0.2em 1em;
+        p, li {
             text-align: justify;
             word-wrap: break-word;
             -webkit-hyphens: auto;
@@ -24,9 +26,9 @@ body > section {
         }
     }
     aside {
-        padding: 1em;
+        padding: 0.2em 1em;
         p {
-            text-align: left;
+            text-align: justify;
             word-wrap: break-word;
             -webkit-hyphens: auto;
             -moz-hyphens: auto;
