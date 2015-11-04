@@ -25,11 +25,13 @@ then
     esac
 fi
 
-for f in $(find $here -name "main.less")
+for f in $(find $here -name "*.less")
 do
     d=$(dirname $f)
     cd $d
-    echo "in $d ..."
-    lessc main.less main.css
+    lessname=$(basename $f)
+    cssname=$(echo $lessname | sed 's/\(.*\)\.less/\1.css/')
+    echo "doing $f / $lessname -> $cssname ..."
+    lessc $lessname $cssname
     cd -
 done

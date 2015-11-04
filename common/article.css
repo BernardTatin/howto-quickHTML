@@ -1,0 +1,20 @@
+/* article.less */
+body > section p,
+body > section li {
+  text-align: justify;
+}
+body > section p strong,
+body > section li strong {
+  font-weight: bold;
+}
+body > section p em,
+body > section li em {
+  font-style: italic;
+}
+body > section p strong em,
+body > section li strong em,
+body > section p em strong,
+body > section li em strong {
+  font-weight: bold;
+  font-style: italic;
+}
