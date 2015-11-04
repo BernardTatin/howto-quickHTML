@@ -1,14 +1,25 @@
-# note
-This is a work in progress. The _master_ branch is the stable one. The _dev_ branch, as you can guess, is the development branch.
+##IMPORTANT
 
-# how to quick HTML
-How to make a quick and nice HTML/CSS page? It's not so hard. I've done all this on Linux but it can be easily done on Windows.
+This is a work in progress, come back later to get a real stable release.
 
-First, I use [Brackets](http://brackets.io/), the best editor for the Web which works everywhere, and [Less](http://lesscss.org/), a CSS preprocessor who can produce CSS directly from [Brackets](http://brackets.io/).
+I'm french, so you can find my bad English is really bad. Tell me, I will correct.
+##some words
 
-When _Brackets_ works, be sure you have two extensions for _Less_ :
- - _LESS AutoCompile_, to compile _Less_ files on saving,
- - _LessHints_, which helps you to complete names.
 
-## note
-I'm french and I'm not sure my english is good, sorry for that :)
+I often write a few HTML pages for documentation, stats presentation, ... and each time I need to search the preceding one to paste and copy CSS, Javascript and HTML in the new one. _GitHub_ is a nice place to put definitive version of all these lines of CSS, Javascript and HTML.
+
+This work results in a small HTML site showing in a few steps what I have done in that code. Writing these lines of text and code, I extends my first aim and I will show some CSS frameworks and use _Ajax requests_ to obtain a real little _CMS_.
+
+Keep in mind that this work is not targetting big web sites, only a few pages of text or some daily logs produced externally (there will be an exemple somewhere).
+
+##installation
+
+Just put the content of the <a href="https://github.com/BernardTatin/howto-quickHTML/archive/master.zip">archive</a> in aplace where your Web Server can  access it.
+
+__Note:__ because I use some _Ajax_ requests, it is easier to use a Web server as Apache, Nginx, Lighttpd.... Some browsers, as _Google Chrome_ can handle these request without it but you had to configure it in a debug mode.
+
+##usage
+
+follow the steps you will find in the left column, look at the code, modify it, play with it and have fun!
+
+_October/November 2015, Bernard Tatin_
