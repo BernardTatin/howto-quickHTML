@@ -131,7 +131,8 @@ Class("Page", {
         },
         on_success: function (result) {
             var place = this.getPlace();
-            utils.getElementById(place).style.display = 'block';
+            // TODO: put this 'inline-block' in a constant
+            utils.getElementById(place).style.display = 'inline-block';
             this.before_on_success(result);
             this.main_on_sucess(result);
             this.after_on_success();
@@ -317,7 +318,7 @@ var clickdEventListener = function (e) {
     myself.self.toc_presentation(query);
     // utils.setUrlInBrowser(href);
     return true;
-}
+};
 
 Class("Session", {
     has: {
