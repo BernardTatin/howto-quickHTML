@@ -8,46 +8,29 @@
     <meta name="keywords" content="HTML, CSS, JavaScript, CSS framework">
     <link href="common/reset.css" rel="stylesheet">
     <link href="style/main.css" rel="stylesheet">
+    <script type="text/javascript" src="javascript/external/modernizr.js"></script>
+    <script type="text/javascript" src="javascript/private/compat.js"></script>
+    <script type="text/javascript" src="javascript/external/lazyload.js"></script>
+    <script type="text/javascript" src="javascript/private/app.js"></script>
 </head>
 
 <body>
-    <header>
-        <h1>How to do a simple Web Site...</h1>
-        <p>... with HTML + CSS + a little bit of JavaScript!</p>
-        <nav>
+    <header id="header">
+        <h1><a id="site-name" href="index.html">text...</a></h1>
+        <h2 id="site-description" class="text-shadow">text...</h2>
+        <nav id="navigation">
             <a href="#">Home</a><a href="about.html">about</a>
         </nav>
+        <h1 id="main_title" class="text-shadow">text...</h1>
     </header>
     <section>
-        <article>
-            <h2>IMPORTANT</h2>
-            <p>This is a work in progress, come back later to get a real stable release.</p>
-            <p>I'm french, so you can find my bad English is really bad. Tell me, I will correct. </p>
-            <h2>some words</h2>
-
-            <p>I often write a few HTML pages for documentation, stats presentation, ... and each time I need to search the preceding one to paste and copy CSS, Javascript and HTML in the new one. <em>GitHub</em> is a nice place to put definitive version of all these lines of CSS, Javascript and HTML.</p>
-            <p>This work results in a small HTML site showing in a few steps what I have done in that code. Writing these lines of text and code, I extends my first aim and I will show some CSS frameworks and use <em>Ajax requests</em> to obtain a real little <em>CMS</em>.</p>
-            <p>Keep in mind that this work is not targetting big web sites, only a few pages of text or some daily logs produced externally (there will be an exemple somewhere).</p>
-
-            <h2>installation</h2>
-            <p>Just put the content of the <a href="https://github.com/BernardTatin/howto-quickHTML/archive/master.zip">archive</a> in aplace where your Web Server can  access it.</p>
-            <p><strong>Note:</strong> because I use some <em>Ajax</em> requests, it is easier to use a Web server as Apache, Nginx, Lighttpd.... Some browsers, as <em>Google Chrome</em> can handle these request without it but you had to configure it in a debug mode.</p>
-
-            <h2>usage</h2>
-            <p>follow the steps you will find in the left column, look at the code, modify it, play with it and have fun!</p>
-            <footer>October/November 2015, Bernard Tatin</footer>
-        </article>
+        <article id="article">text ...</article>
         <aside>
-            <h2>the menu</h2>
-            <menu>
-                <a>one link</a>
-                <a>two link</a>
-                <a>three links</a>
-            </menu>
+            <menu id="toc" class="shadow">text...</menu>
             <p>Some interesting text telling how clever and useful is this menu. You <em>must</em> click on some of these items to see more wonderful text.</p>
         </aside>
     </section>
-    <footer>that's all, folks!</footer>
+    <footer id="footer">that's all, folks!</footer>
 </body>
 
 </html>
