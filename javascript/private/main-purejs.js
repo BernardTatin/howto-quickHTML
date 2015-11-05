@@ -238,7 +238,7 @@ Class("PageContent", {
             var currentRoot = query.getRoot();
             var url = query.url;
 
-            this.forEachElementById('p',
+            this.forEachElementById('a',
                 function (element) {
                     var href = element.getAttribute('href');
                     var query = new Query(href);
