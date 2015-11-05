@@ -226,6 +226,34 @@ Class("PageArticle", {
     }
 });
 
+var clickdEventListener = function (e) {
+    // cf http://www.sitepoint.com/javascript-this-event-handlers/
+    e = e || window.event;
+    var myself = e.target || e.srcElement;
+    var href = myself.href;
+    var query = new Query(href);
+    var lroot = query.getRoot();
+
+    // prevents <a> executing the default behavior
+    // which is to load the page
+    e.preventDefault();
+    console.log('begin clickdEventListener')
+    myself.self.query = query;
+    myself.self.mainQuery = query;
+    if (lroot !== myself.currentRoot) {
+        allPages.reloadAll(new PageContent(new Query('content', lroot), 'toc', myself.session, query, true),
+            new PageContent(new Query('navigation', lroot), 'navigation', myself.session, query),
+            new Page(new Query('footer', lroot), 'footer', myself.session, true),
+            new PageArticle(query, 'article', myself.session));
+    } else {
+        allPages.reloadArticle(new PageArticle(query, 'article', myself.session));
+    }
+    myself.self.toc_presentation(query);
+    console.log('end clickdEventListener')
+    // utils.setUrlInBrowser(href);
+    return false;
+};
+
 Class("PageContent", {
     isa: Page,
     has: {
@@ -259,8 +287,9 @@ Class("PageContent", {
             var currentRoot = this.query.getRoot();
             var self = this;
 
-            this.forEachElementById('p',
+            this.forEachElementById('a',
                 function (element) {
+                    console.log('add clickdEventListener');
                     element.self = self;
                     element.href = element.getAttribute('href');
                     element.currentRoot = currentRoot;
@@ -296,29 +325,6 @@ Class("PageContent", {
         }
     }
 });
-
-var clickdEventListener = function (e) {
-    // cf http://www.sitepoint.com/javascript-this-event-handlers/
-    e = e || window.event;
-    var myself = e.target || e.srcElement;
-    var href = myself.href;
-    var query = new Query(href);
-    var lroot = query.getRoot();
-
-    myself.self.query = query;
-    myself.self.mainQuery = query;
-    if (lroot !== myself.currentRoot) {
-        allPages.reloadAll(new PageContent(new Query('content', lroot), 'toc', myself.session, query, true),
-            new PageContent(new Query('navigation', lroot), 'navigation', myself.session, query),
-            new Page(new Query('footer', lroot), 'footer', myself.session, true),
-            new PageArticle(query, 'article', myself.session));
-    } else {
-        allPages.reloadArticle(new PageArticle(query, 'article', myself.session));
-    }
-    myself.self.toc_presentation(query);
-    // utils.setUrlInBrowser(href);
-    return true;
-};
 
 Class("Session", {
     has: {
