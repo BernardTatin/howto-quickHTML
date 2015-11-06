@@ -38,10 +38,10 @@ var jprint = (function() {
         }
         window.onbeforeprint = beforePrint;
         window.onafterprint = afterPrint;
-    }
+    };
     var isInPrint = function() {
         return inPrint;
-    }
+    };
     return {
         initialize: initialize,
         isInPrint: isInPrint

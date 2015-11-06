@@ -59,8 +59,7 @@ function BasePage(place) {
 if (typeof BasePage.initialized == "undefined") {
     BasePage.prototype.getPlace = function () {
         return this.place;
-    }
-
+    };
     BasePage.prototype.setHTMLByClassName = function (className, html) {
         var nodes = document.getElementsByClassName(className);
         for (var i = 0, nl = nodes.length; i < nl; i++) {
@@ -97,7 +96,7 @@ if (typeof Page.initialized == "undefined") {
 
     Page.prototype.getSession = function () {
         return this.session;
-    }
+    };
 
     Page.prototype.getPageName = function () {
         return this.query.getPageName();
@@ -159,22 +158,6 @@ if (typeof Page.initialized == "undefined") {
         this.set();
     };
     Page.initialized = true;
-}
-
-function AjaxGetPage(page) {
-    AjaxGet.call(this, page.fileName());
-    this.page = page;
-}
-if (typeof AjaxGetPage.initialized == "undefined") {
-    AjaxGetPage.prototype.__proto__ = AjaxGet.prototype;
-
-    AjaxGetPage.prototype.on_receive = function (data) {
-        this.page.on_success(data);
-    };
-    AjaxGetPage.prototype.on_failure = function (data) {
-        this.page.on_failure(data);
-    };
-    AjaxGetPage.initialized = true;
 }
 
 function PagesCollection(content, navigation, footer, article, morecontent) {

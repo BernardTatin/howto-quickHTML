@@ -62,3 +62,20 @@ function AjaxGet(url) {
 }
 
 AjaxGet.prototype.__proto__ = Ajax.prototype;
+
+function AjaxGetPage(page) {
+    AjaxGet.call(this, page.fileName());
+    this.page = page;
+}
+if (typeof AjaxGetPage.initialized == "undefined") {
+    AjaxGetPage.prototype.__proto__ = AjaxGet.prototype;
+
+    AjaxGetPage.prototype.on_receive = function (data) {
+        this.page.on_success(data);
+    };
+    AjaxGetPage.prototype.on_failure = function (data) {
+        this.page.on_failure(data);
+    };
+    AjaxGetPage.initialized = true;
+}
+

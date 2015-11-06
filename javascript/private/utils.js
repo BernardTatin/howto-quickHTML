@@ -61,8 +61,8 @@ var utils = (function() {
         }
     };
     var isUndefined = function(v) {
-        var undefined;
-        return v === undefined;
+        var notdefined;
+        return v === notdefined;
     };
     return {
         urlParam: urlParam,
