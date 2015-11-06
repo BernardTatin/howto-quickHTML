@@ -244,6 +244,7 @@ var clickdEventListener = function (e) {
         allPages.reloadAll(new PageContent(new Query('content', lroot), 'toc', myself.session, query, true),
             new PageContent(new Query('navigation', lroot), 'navigation', myself.session, query),
             new Page(new Query('footer', lroot), 'footer', myself.session, true),
+            new Page(new Query('morecontent', lroot), 'morecontent', myself.session, true),
             new PageArticle(query, 'article', myself.session));
     } else {
         allPages.reloadArticle(new PageArticle(query, 'article', myself.session));
@@ -339,6 +340,7 @@ Class("Session", {
             allPages = new PagesCollection(new PageContent(new Query('content', broot), 'toc', this, this.query, true),
                 new PageContent(new Query('navigation', broot), 'navigation', this, this.query),
                 new Page(new Query('footer', broot), 'footer', this, true),
+                new Page(new Query('morecontent', broot), 'morecontent', this, true),
                 new PageArticle(this.query, 'article', this));
 
             utils.getElementById('site-name').innerHTML = config.SITE_NAME;
