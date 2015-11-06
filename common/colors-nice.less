@@ -2,9 +2,20 @@
  * colors-nice.less
  */
 
-
+@color-a: bisque;
+@color-a-dark: brown;
+@color-a-hover: chocolate;
+@color-footer-back: darksalmon;
 body {
     background-color: #444;
+}
+
+a {
+    color: @color-a;
+    text-decoration: none;
+    &:hover {
+        color: @color-a-hover;
+    }
 }
 
 body > header {
@@ -18,30 +29,27 @@ body > header {
     nav {
         background-color: black;
         color: bisque;
-        a {
-            color: bisque;
-            &:hover {
-                color:chocolate;
-            }
-        }
     }
 }
+
 body > footer {
-    background-color: darkseagreen;
+    background-color: @color-footer-back;
 }
+
 body > section {
     article {
         background-color: #eee;
+        a {
+            color: @color-a-dark;
+        }
         footer {
-            background-color: darksalmon;
+            background-color: @color-footer-back;
         }
     }
     aside {
-        background-color: lightblue;
+        background-color: chocolate;
         menu {
-            a {
-                background-color: cadetblue;
-            }
+            background-color: brown;
         }
     }
 }
