@@ -26,16 +26,26 @@ body > header nav {
   color: bisque;
 }
 body > footer {
-  background-color: darksalmon;
+  background-color: brown;
+  color: bisque;
 }
 body > section article {
   background-color: #eee;
+}
+body > section article h2 {
+  background-color: brown;
+  color: beige;
+}
+body > section article h3,
+body > section article h4 {
+  background-color: salmon;
 }
 body > section article a {
   color: brown;
 }
 body > section article footer {
-  background-color: darksalmon;
+  background-color: brown;
+  color: bisque;
 }
 body > section aside {
   background-color: chocolate;

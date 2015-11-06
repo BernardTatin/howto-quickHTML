@@ -13,19 +13,33 @@ body {
   font-family: gillius_adf_no2, Helvetica, Arial, Verdana, Geneva, sans-serif;
 }
 body > header {
-  font-family: Impact, Verdana, Geneva, sans-serif;
+  font-family: gillius_adfcondensed, Impact, Verdana, Geneva, sans-serif;
 }
 body > header h1 {
-  font-family: Impact, Verdana, Geneva, sans-serif;
+  font-family: gillius_adfcondensed, Impact, Verdana, Geneva, sans-serif;
+  font-style: italic;
 }
 body > footer {
   font-family: gillius_adfcondensed, Impact, Verdana, Geneva, sans-serif;
+}
+body > footer em {
+  font-style: italic;
+}
+body > footer em strong {
+  font-weight: bold;
+}
+body > footer strong {
+  font-weight: bold;
+}
+body > footer strong em {
+  font-style: italic;
 }
 body > section h1,
 body > section h2,
 body > section h3,
 body > section h4 {
-  font-family: Impact, Verdana, Geneva, sans-serif;
+  font-family: gillius_adfcondensed, Impact, Verdana, Geneva, sans-serif;
+  font-weight: bold;
 }
 body > section article footer {
   font-family: gillius_adfcondensed, Impact, Verdana, Geneva, sans-serif;
@@ -35,6 +49,13 @@ body > section article footer {
  */
 body {
   background-color: #444;
+}
+a {
+  color: bisque;
+  text-decoration: none;
+}
+a:hover {
+  color: chocolate;
 }
 body > header {
   background-color: black;
@@ -49,35 +70,42 @@ body > header nav {
   background-color: black;
   color: bisque;
 }
-body > header nav a {
-  color: bisque;
-}
-body > header nav a:hover {
-  color: chocolate;
-}
 body > footer {
-  background-color: darkseagreen;
+  background-color: brown;
+  color: bisque;
 }
 body > section article {
   background-color: #eee;
 }
+body > section article h2 {
+  background-color: brown;
+  color: beige;
+}
+body > section article h3,
+body > section article h4 {
+  background-color: salmon;
+}
+body > section article a {
+  color: brown;
+}
 body > section article footer {
-  background-color: darksalmon;
+  background-color: brown;
+  color: bisque;
 }
 body > section aside {
-  background-color: lightblue;
+  background-color: chocolate;
 }
-body > section aside menu a {
-  background-color: cadetblue;
+body > section aside menu {
+  background-color: brown;
 }
 /*
  * basci-lists.less
  */
-ul {
+body > section > article ul {
   list-style-type: disc;
   list-style-position: inside;
 }
-ul li {
+body > section > article ul li {
   margin-left: 1em;
 }
 /*
@@ -97,6 +125,9 @@ body > section article {
 }
 body > section aside {
   max-width: 200px;
+}
+body > section aside menu {
+  width: 100%;
 }
 /*
  * spacing.less
@@ -156,10 +187,22 @@ body > section li {
 body > section h2,
 body > section h3,
 body > section h4 {
-  line-height: 1.6em;
+  line-height: 1.5em;
+}
+body > section h2 {
+  font-size: 2.15em;
+}
+body > section h3 {
+  font-size: 1.85em;
+}
+body > section h4 {
+  font-size: 1.65em;
 }
 body > section article footer {
   line-height: 1.9em;
+}
+body > section aside h2 {
+  font-size: 1.35em;
 }
 /*
  * positions.less
@@ -181,13 +224,13 @@ body > section aside {
 /*
  * nav-menus.less
  */
-body > header nav > p {
-  display: inline;
-}
-body > header nav > p a {
+body > header nav a {
   border-right: 2px solid #ccc;
   margin: 1em;
   padding: 0.5em;
+}
+body > section aside menu h2 {
+  text-align: center;
 }
 body > section aside menu a {
   display: block;

@@ -72,16 +72,26 @@ body > header nav {
   color: bisque;
 }
 body > footer {
-  background-color: darksalmon;
+  background-color: brown;
+  color: bisque;
 }
 body > section article {
   background-color: #eee;
+}
+body > section article h2 {
+  background-color: brown;
+  color: beige;
+}
+body > section article h3,
+body > section article h4 {
+  background-color: salmon;
 }
 body > section article a {
   color: brown;
 }
 body > section article footer {
-  background-color: darksalmon;
+  background-color: brown;
+  color: bisque;
 }
 body > section aside {
   background-color: chocolate;
@@ -220,6 +230,9 @@ body > header nav a {
   margin: 1em;
   padding: 0.5em;
 }
+body > section aside menu h2 {
+  text-align: center;
+}
 body > section aside menu a {
   display: block;
   margin: 0.5em;
@@ -244,4 +257,10 @@ body > section p em strong,
 body > section li em strong {
   font-weight: bold;
   font-style: italic;
+}
+.license {
+  width: 95%;
+  padding: 1em;
+  border: 3px inset  burlywood;
+  margin: 1em 0;
 }

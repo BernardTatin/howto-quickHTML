@@ -7,6 +7,9 @@ body > header nav a {
   margin: 1em;
   padding: 0.5em;
 }
+body > section aside menu h2 {
+  text-align: center;
+}
 body > section aside menu a {
   display: block;
   margin: 0.5em;
