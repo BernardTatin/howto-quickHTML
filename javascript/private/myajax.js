@@ -27,14 +27,7 @@ function Ajax(url, http_request) {
     this.http_request = http_request;
     this.request = null;
 }
-/*
-Ajax.prototype.initialize = function(url, http_request) {
-    this.url = url;
-    this.http_request = http_request;
-    this.request = null;
-    return this;
-}
-*/
+
 Ajax.prototype.createRequest = function() {
     var req = new XMLHttpRequest();
     req.self = this;
@@ -68,4 +61,4 @@ function AjaxGet(url) {
     Ajax.call(this, url, 'GET');
 }
 
-AjaxGet.prototype = new Ajax();
+AjaxGet.prototype.__proto__ = Ajax.prototype;

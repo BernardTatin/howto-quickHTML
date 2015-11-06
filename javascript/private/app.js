@@ -5,10 +5,10 @@
 "use strict";
 
 
-var _kernel = (function () {
+var _kernel = (function() {
     var appConstants = {
-        jsRoot: 'javascript'
-    },
+            jsRoot: 'javascript'
+        },
         appVariables = {
             config: 'howto/config.js',
             main_code: 'private/main-purejs.js',
@@ -22,21 +22,26 @@ var _kernel = (function () {
         return appConstants.jsRoot + '/' + libname;
     }
 
-    return {
-        app_type: function () {
-            return appVariables.libname;
-        },
-        app_loader: function () {
-            appVariables.navigator = navigator.appName + ' ' + navigator.appCodeName + ' ' + navigator.appVersion;
-            LazyLoad.js(appVariables.config, function () {
-                LazyLoad.js(appVariables.libs1.map(normalize_libname), function () {
-                LazyLoad.js(appVariables.libs2.map(normalize_libname), function () {
-                    LazyLoad.js(normalize_libname(appVariables.main_code), function () {
-                    });
-                });
+    function app_type() {
+        return appVariables.libname;
+    }
+
+    function app_loader() {
+        appVariables.navigator = navigator.appName + ' ' +
+            navigator.appCodeName + ' ' +
+            navigator.appVersion;
+        LazyLoad.js(appVariables.config, function() {
+            LazyLoad.js(appVariables.libs1.map(normalize_libname), function() {
+                LazyLoad.js(appVariables.libs2.map(normalize_libname), function() {
+                    LazyLoad.js(normalize_libname(appVariables.main_code), function() {});
                 });
             });
-        }
+        });
+    }
+
+    return {
+        app_type: app_type,
+        app_loader: app_loader
     };
 })();
 

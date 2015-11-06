@@ -16,21 +16,6 @@ var PAGESCTS = (function () {
 
 var allPages = null;
 
-/*
-function classeMere() {
-    this.attribut = attribut1;
-    if (typeOf classeMere.initialized == "undefined") {
-        classeMere.prototype.methodeA() = function () {
-            // code
-        }
-
-        classeMere.prototype.methodeB() = function () {
-            // code
-        }
-        classeMere.initialized = true;
-    }
-}
-*/
 
 function Query(location, root) {
     this.location = location;
@@ -107,82 +92,81 @@ function Page(query, place, session, hasCopyright) {
     this.session = session;
     this.hasCopyright = hasCopyright;
 }
-Page.prototype.__proto__ = BasePage.prototype;
+if (typeof Page.initialized == "undefined") {
+    Page.prototype.__proto__ = BasePage.prototype;
 
-Page.prototype.getSession = function() {
-    return this.session;
-}
-
-Page.prototype.getPageName = function () {
-    return this.query.getPageName();
-};
-Page.prototype.fileName = function () {
-    if (!this.file_name) {
-        this.file_name = config.SITE_BASE + '/' +
-            this.query.getRoot() + '/' + this.getPageName() + '.html';
+    Page.prototype.getSession = function () {
+        return this.session;
     }
-    return this.file_name;
-};
-Page.prototype.copyright = function () {
-    this.setHTMLByClassName('copyright', config.COPYRIGHT);
-};
-Page.prototype.authors = function () {
-    this.setHTMLByClassName('authors', config.AUTHORS);
-};
-Page.prototype.supressMetaTags = function (str) {
-    var metaPattern = /<meta.+\/?>/g;
-    return str.replace(metaPattern, '');
-};
-Page.prototype.before_on_success = function (result) {
-    try {
+
+    Page.prototype.getPageName = function () {
+        return this.query.getPageName();
+    };
+    Page.prototype.fileName = function () {
+        if (!this.file_name) {
+            this.file_name = config.SITE_BASE + '/' +
+                this.query.getRoot() + '/' + this.getPageName() + '.html';
+        }
+        return this.file_name;
+    };
+    Page.prototype.copyright = function () {
+        this.setHTMLByClassName('copyright', config.COPYRIGHT);
+    };
+    Page.prototype.authors = function () {
+        this.setHTMLByClassName('authors', config.AUTHORS);
+    };
+    Page.prototype.supressMetaTags = function (str) {
+        var metaPattern = /<meta.+\/?>/g;
+        return str.replace(metaPattern, '');
+    };
+    Page.prototype.before_on_success = function (result) {
+        try {
+            var place = this.getPlace();
+            utils.getElementById(place).innerHTML = this.supressMetaTags(result);
+        } catch (e) {
+            console.log('ERROR: ' + e);
+        }
+    };
+    Page.prototype.main_on_sucess = function (result) {
+
+    };
+    Page.prototype.after_on_success = function () {
+        if (this.hasCopyright) {
+            this.copyright();
+            this.authors();
+        }
+        utils.app_string();
+    };
+    Page.prototype.on_failure = function (result) {
         var place = this.getPlace();
-        utils.getElementById(place).innerHTML = this.supressMetaTags(result);
-    } catch (e) {
-        console.log('ERROR: ' + e);
-    }
-};
-Page.prototype.main_on_sucess = function (result) {
-
-};
-Page.prototype.after_on_success = function () {
-    if (this.hasCopyright) {
-        this.copyright();
-        this.authors();
-    }
-    utils.app_string();
-};
-Page.prototype.on_failure = function (result) {
-    var place = this.getPlace();
-    utils.getElementById(place).style.display = 'none';
-};
-Page.prototype.on_success = function (result) {
-    var place = this.getPlace();
-    // TODO = put this 'inline-block' in a constant
-    try {
-        utils.getElementById(place).style.display = 'inline-block';
-    } catch (e) {
-        console.log('ERROR : ' + e);
-    }
-    this.before_on_success(result);
-    if (result === null) {
-        console.log('DEBUG (168): result=' + result);
-        console.trace();
-    }
-    this.main_on_sucess(result);
-    this.after_on_success();
-    this.set();
-};
-Page.initialized = true;
+        utils.getElementById(place).style.display = 'none';
+    };
+    Page.prototype.on_success = function (result) {
+        var place = this.getPlace();
+        // TODO = put this 'inline-block' in a constant
+        try {
+            utils.getElementById(place).style.display = 'inline-block';
+        } catch (e) {
+            console.log('ERROR : ' + e);
+        }
+        this.before_on_success(result);
+        if (result === null) {
+            console.log('DEBUG (168): result=' + result);
+            console.trace();
+        }
+        this.main_on_sucess(result);
+        this.after_on_success();
+        this.set();
+    };
+    Page.initialized = true;
+}
 
 function AjaxGetPage(page) {
     AjaxGet.call(this, page.fileName());
     this.page = page;
 }
 if (typeof AjaxGetPage.initialized == "undefined") {
-
-    for (var element in AjaxGet.prototype) {
-        AjaxGetPage.prototype[element] = AjaxGet.prototype[element];
-    }
+    AjaxGetPage.prototype.__proto__ = AjaxGet.prototype;
 
     AjaxGetPage.prototype.on_receive = function (data) {
         this.page.on_success(data);
@@ -228,30 +212,32 @@ function PageArticle(query, place, session, hasCopyright) {
     Page.call(this, query, place, session, hasCopyright);
     window.article = this;
 }
-PageArticle.prototype.__proto__ = Page.prototype;
-// PageArticle.prototype.mysuper = new Page();
+if (typeof PageArticle.initialized == "undefined") {
+    PageArticle.prototype.__proto__ = Page.prototype;
+    // PageArticle.prototype.mysuper = new Page();
 
-PageArticle.prototype.resizeSVG = function () {
-    var maxWidth = utils.getElementById(this.getPlace()).clientWidth;
-    console.log('resize SVG in');
+    PageArticle.prototype.resizeSVG = function () {
+        var maxWidth = utils.getElementById(this.getPlace()).clientWidth;
+        console.log('resize SVG in');
 
-    this.forEachElementById('svg',
-        function (element) {
-            var width = element.clientWidth;
-            var height = element.clientHeight;
-            var newHeight = height * maxWidth / width;
-            element.style.width = maxWidth + 'px';
-            element.style.height = newHeight + 'px';
-            console.log('resize ' + width + ' -> ' + maxWidth);
-        });
-    console.log('resize SVG out');
-};
+        this.forEachElementById('svg',
+            function (element) {
+                var width = element.clientWidth;
+                var height = element.clientHeight;
+                var newHeight = height * maxWidth / width;
+                element.style.width = maxWidth + 'px';
+                element.style.height = newHeight + 'px';
+                console.log('resize ' + width + ' -> ' + maxWidth);
+            });
+        console.log('resize SVG out');
+    };
 
-PageArticle.prototype.after_on_success = function () {
-    this.resizeSVG();
-    this.__proto__.__proto__.after_on_success.call(this);
-};
-PageArticle.initialized = true;
+    PageArticle.prototype.after_on_success = function () {
+        this.resizeSVG();
+        this.__proto__.__proto__.after_on_success.call(this);
+    };
+    PageArticle.initialized = true;
+}
 
 function PageContent(query, place, session, mainQuery, hasTitle) {
     // this.__proto__.__proto__.constructor.call(this, query, place, session);
@@ -288,74 +274,74 @@ var clickdEventListener = function (e) {
     }
     myself.self.toc_presentation(query);
     console.log('end clickdEventListener');
-    // utils.setUrlInBrowser(href);
     return false;
 };
 
-PageContent.prototype.__proto__ = Page.prototype;
-// PageContent.prototype.mysuper = new Page();
-// PageContent.prototype.mysuper.prototype = new Page();
+if (typeof PageContent.initialized == "undefined") {
+    PageContent.prototype.__proto__ = Page.prototype;
 
-PageContent.prototype.toc_presentation = function (query) {
-    if (query === null) {
-        console.log('ERROR: query === null');
-        console.trace();
-    }
-    var currentPage = query.getPageName();
-    var currentRoot = query.getRoot();
-    var url = query.url;
+    PageContent.prototype.toc_presentation = function (query) {
+        if (query === null) {
+            console.log('ERROR: query === null');
+            console.trace();
+        }
+        var currentPage = query.getPageName();
+        var currentRoot = query.getRoot();
+        var url = query.url;
 
-    this.forEachElementById('a',
-        function (element) {
-            var href = element.getAttribute('href');
-            var query = new Query(href);
+        this.forEachElementById('a',
+            function (element) {
+                var href = element.getAttribute('href');
+                var query = new Query(href);
 
-            element.className = 'normal-node';
-            if (query.getPageName() === currentPage &&
-                query.getRoot() === currentRoot) {
-                var title = element.innerHTML;
-                utils.getElementById('main_title').innerHTML = title;
-                utils.setUrlInBrowser(url);
-                document.title = title;
-                element.className = 'current-node';
-            }
-        });
-};
-PageContent.prototype.main_on_sucess = function (result) {
-    var session = this.getSession();
-    var currentRoot = this.query.getRoot();
-    var self = this;
+                element.className = 'normal-node';
+                if (query.getPageName() === currentPage &&
+                    query.getRoot() === currentRoot) {
+                    var title = element.innerHTML;
+                    utils.getElementById('main_title').innerHTML = title;
+                    utils.setUrlInBrowser(url);
+                    document.title = title;
+                    element.className = 'current-node';
+                }
+            });
+    };
+    PageContent.prototype.main_on_sucess = function (result) {
+        var session = this.getSession();
+        var currentRoot = this.query.getRoot();
+        var self = this;
 
-    self.forEachElementById('a',
-        function (element) {
-            console.log('add clickdEventListener');
-            element.self = self;
-            element.href = element.getAttribute('href');
-            element.currentRoot = currentRoot;
-            element.session = session;
-            purejsLib.addEvent(element, 'click', clickdEventListener);
-        });
-    self.toc_presentation(self.mainQuery);
-};
+        self.forEachElementById('a',
+            function (element) {
+                console.log('add clickdEventListener');
+                element.self = self;
+                element.href = element.getAttribute('href');
+                element.currentRoot = currentRoot;
+                element.session = session;
+                purejsLib.addEvent(element, 'click', clickdEventListener);
+            });
+        self.toc_presentation(self.mainQuery);
+    };
 
-PageContent.prototype.after_on_success = function () {
-    this.toc_presentation(this.mainQuery);
-    this.__proto__.__proto__.after_on_success.call(this);
-};
-PageContent.prototype.before_on_success = function (result) {
-    if (this.hasTitle && config.TOC_TITLE) {
-        result = '<h2>' + config.TOC_TITLE + '</h2>' + result;
-    }
-    this.__proto__.__proto__.before_on_success.call(this, result);
-};
-PageContent.prototype.on_success = function (result) {
-    if (!jprint.isInPrint()) {
-        this.__proto__.__proto__.on_success.call(this, result);
-    } else {
-        var place = this.getPlace();
-        utils.getElementById(place).style.display = 'none';
-    }
-};
+    PageContent.prototype.after_on_success = function () {
+        this.toc_presentation(this.mainQuery);
+        this.__proto__.__proto__.after_on_success.call(this);
+    };
+    PageContent.prototype.before_on_success = function (result) {
+        if (this.hasTitle && config.TOC_TITLE) {
+            result = '<h2>' + config.TOC_TITLE + '</h2>' + result;
+        }
+        this.__proto__.__proto__.before_on_success.call(this, result);
+    };
+    PageContent.prototype.on_success = function (result) {
+        if (!jprint.isInPrint()) {
+            this.__proto__.__proto__.on_success.call(this, result);
+        } else {
+            var place = this.getPlace();
+            utils.getElementById(place).style.display = 'none';
+        }
+    };
+    PageContent.initialized = true;
+}
 
 function Session() {
     this.query = new Query();
