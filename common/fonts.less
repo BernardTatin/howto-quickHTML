@@ -3,23 +3,40 @@
  */
 
 body {
-  font-family: @normalFont;
+    font-family: @normalFont;
 }
+
 body > header {
-  font-family: @titleFont;
+    font-family: @titleFont;
     h1 {
         font-family: @titleFont;
+        font-style: italic;
     }
 }
+
 body > footer {
-  font-family: @footerFont;
+    font-family: @footerFont;
+    em {
+        font-style: italic;
+        strong {
+            font-weight: bold;
+        }
+    }
+    strong {
+        font-weight: bold;
+        em {
+            font-style: italic;
+        }
+    }
 }
+
 body > section h1,
 body > section h2,
 body > section h3,
 body > section h4 {
-  font-family: @titleFont;
+    font-family: @titleFont;
+    font-weight: bold;
 }
 body > section article footer {
-  font-family: @footerFont;
+    font-family: @footerFont;
 }
