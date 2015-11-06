@@ -12,8 +12,8 @@ var _kernel = (function () {
         appVariables = {
             config: 'howto/config.js',
             main_code: 'private/main-purejs.js',
-            libs1: ['external/joose.min.js'],
-            libs2: ['private/jprint.js', 'private/utils.js', 'private/myajax.js', 'private/purejs-lib.js'],
+            libs1: ['private/myajax.js'],
+            libs2: ['private/jprint.js', 'private/utils.js', 'private/purejs-lib.js'],
             libname: 'pure Javascript 0.1.2',
             navigator: null
         };

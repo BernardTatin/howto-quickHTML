@@ -15,7 +15,8 @@ a:hover {
 body > header {
   background-color: black;
 }
-body > header h1 {
+body > header h1,
+body > header h2 {
   color: lightgray;
 }
 body > header p {
