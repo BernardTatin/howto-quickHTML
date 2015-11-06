@@ -40,3 +40,22 @@ body > section h4 {
 body > section article footer {
     font-family: @footerFont;
 }
+
+code, pre {
+    font-family: @codefont;
+}
+
+pre {
+    em {
+        font-style: italic;
+        strong {
+            font-weight: bold;
+        }
+    }
+    strong {
+        font-weight: bold;
+        em {
+            font-style: italic;
+        }
+    }
+}

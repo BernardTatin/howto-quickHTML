@@ -47,6 +47,9 @@ body > section article footer {
   background-color: brown;
   color: bisque;
 }
+body > section article code {
+  color: brown;
+}
 body > section aside {
   background-color: chocolate;
 }

@@ -15,7 +15,7 @@
     font-style: normal;
 }
 @font-face {
-    font-family: 'code_new_romanbold';
+    font-family: 'code_new_romanregular';
     src: url('code_new_roman_i-codenewroman.eot');
     src: url('code_new_roman_i-codenewroman.eot?#iefix') format('embedded-opentype'), url('code_new_roman_i-codenewroman.woff') format('woff'), url('code_new_roman_i-codenewroman.ttf') format('truetype'), url('code_new_roman_i-codenewroman.svg#code_new_romanitalic') format('svg');
     font-weight: normal;
