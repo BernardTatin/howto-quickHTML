@@ -4,7 +4,7 @@
 
 "use strict";
 
-var PAGESCTS = (function () {
+var PAGESCTS = (function() {
     return {
         CONTENT: 0,
         NAVIGATION: 1,
@@ -15,59 +15,63 @@ var PAGESCTS = (function () {
 
 var allPages = null;
 
-Class("Query", {
-    has: {
-        root: {is: 'ro', init: null},
-        pageName: {is: 'ro', init: null},
-        url: {is: 'n/a', init: null}
-    },
-    methods: {
-        initialize: function (location, root) {
-            if (!utils.isUndefined(location) && !utils.isUndefined(root)) {
-                this.root = root;
-                this.pageName = location;
-            } else {
-                if (utils.isUndefined(location) && utils.isUndefined(root)) {
-                    this.url = window.location.href;
-                } else if (!utils.isUndefined(location)) {
-                    this.url = location;
-                } else {
-                    this.url = window.location.href;
-                }
-                this.root = this.urlParam('root', config.DEFAULT_ROOT);
-                this.pageName = this.urlParam('page', config.DEFAULT_PAGE);
-            }
-        },
-        urlParam: function (name, default_value) {
-            return utils.urlParam(name, this.url, default_value);
+function Query(location, root) {
+    this.location = location;
+    this.root = root;
+    this.pageName = null;
+    this.url = null;
+    if (!utils.isUndefined(location) && !utils.isUndefined(root)) {
+        this.root = root;
+        this.pageName = location;
+    } else {
+        if (utils.isUndefined(location) && utils.isUndefined(root)) {
+            this.url = window.location.href;
+        } else if (!utils.isUndefined(location)) {
+            this.url = location;
+        } else {
+            this.url = window.location.href;
         }
+        this.root = this.urlParam('root', config.DEFAULT_ROOT);
+        this.pageName = this.urlParam('page', config.DEFAULT_PAGE);
     }
-});
+}
+Query.prototype.urlParam = function(name, default_value) {
+    return utils.urlParam(name, this.url, default_value);
+};
+Query.prototype.getRoot = function() {
+    return this.root;
+};
+Query.prototype.getPageName = function() {
+    return this.pageName;
+};
 
 Class("BasePage", {
     has: {
-        isItLoaded: {is: 'ro', init: false}
+        isItLoaded: {
+            is: 'ro',
+            init: false
+        }
     },
     methods: {
-        initialize: function () {
+        initialize: function() {
             this.isItLoaded = false;
         },
-        setHTMLByClassName: function (className, html) {
+        setHTMLByClassName: function(className, html) {
             var nodes = document.getElementsByClassName(className);
             for (var i = 0, nl = nodes.length; i < nl; i++) {
                 nodes[i].innerHTML = html;
             }
         },
-        set: function () {
+        set: function() {
             this.isItLoaded = true;
         },
-        reset: function () {
+        reset: function() {
             this.isItLoaded = false;
         },
-        amILoaded: function () {
+        amILoaded: function() {
             return this.isItLoaded;
         },
-        forEachElementById: function (id, onElement) {
+        forEachElementById: function(id, onElement) {
             var elements = utils.getElementById(this.getPlace()).getElementsByTagName(id);
             for (var i = 0, el = elements.length; i < el; i++) {
                 onElement(elements[i]);
@@ -79,57 +83,69 @@ Class("BasePage", {
 Class("Page", {
     isa: BasePage,
     has: {
-        query: {is: 'n/a', init: null},
-        place: {is: 'ro', init: null},
-        session: {is: 'ro', init: null},
-        hasCopyright: {is: 'ro', init: false}
+        query: {
+            is: 'n/a',
+            init: null
+        },
+        place: {
+            is: 'ro',
+            init: null
+        },
+        session: {
+            is: 'ro',
+            init: null
+        },
+        hasCopyright: {
+            is: 'ro',
+            init: false
+        }
     },
     methods: {
-        initialize: function (query, place, session, hasCopyright) {
+        initialize: function(query, place, session, hasCopyright) {
             this.query = query;
             this.place = place;
             this.session = session;
             this.hasCopyright = hasCopyright;
         },
-        getPageName: function () {
+        getPageName: function() {
             return this.query.getPageName();
         },
-        fileName: function () {
+        fileName: function() {
             if (!this.file_name) {
                 this.file_name = config.SITE_BASE + '/' +
                     this.query.getRoot() + '/' + this.getPageName() + '.html';
             }
             return this.file_name;
         },
-        copyright: function () {
+        copyright: function() {
             this.setHTMLByClassName('copyright', config.COPYRIGHT);
         },
-        authors: function () {
+        authors: function() {
             this.setHTMLByClassName('authors', config.AUTHORS);
         },
-        supressMetaTags: function (str) {
+        supressMetaTags: function(str) {
             var metaPattern = /<meta.+\/?>/g;
             return str.replace(metaPattern, '');
         },
-        before_on_success: function (result) {
+        before_on_success: function(result) {
             var place = this.getPlace();
             utils.getElementById(place).innerHTML = this.supressMetaTags(result);
         },
-        main_on_sucess: function (result) {
+        main_on_sucess: function(result) {
 
         },
-        after_on_success: function () {
+        after_on_success: function() {
             if (this.hasCopyright) {
                 this.copyright();
                 this.authors();
             }
             utils.app_string();
         },
-        on_failure: function (result) {
+        on_failure: function(result) {
             var place = this.getPlace();
             utils.getElementById(place).style.display = 'none';
         },
-        on_success: function (result) {
+        on_success: function(result) {
             var place = this.getPlace();
             // TODO: put this 'inline-block' in a constant
             utils.getElementById(place).style.display = 'inline-block';
@@ -141,53 +157,49 @@ Class("Page", {
     }
 });
 
-Class("AjaxGetPage", {
-    isa: MyAjax.AjaxGet,
-    has: {
-        page: {is: 'n/a', init: null}
-    },
-    override: {
-        initialize: function (page) {
-            this.SUPER(page.fileName());
-            this.page = page;
-        }
-    },
-    methods: {
-        on_receive: function (data) {
-            this.page.on_success(data);
-        },
-        on_failure: function (data) {
-            this.page.on_failure(data);
-        }
-    }
-});
+function AjaxGetPage(page) {
+    AjaxGet.call(this, page.fileName());
+    this.page = page;
+}
+AjaxGetPage.prototype = new AjaxGet();
+
+AjaxGetPage.prototype.on_receive = function(data) {
+    this.page.on_success(data);
+};
+AjaxGetPage.prototype.on_failure = function(data) {
+    this.page.on_failure(data);
+};
 
 Class("PagesCollection", {
     has: {
-        pages: {is: 'n/a', init: null}
+        pages: {
+            is: 'n/a',
+            init: null
+        }
     },
     methods: {
-        initialize: function (content, navigation, footer, article) {
+        initialize: function(content, navigation, footer, article) {
             this.reloadAll(content, navigation, footer, article);
         },
-        doload: function () {
-            this.pages.map(function (page) {
+        doload: function() {
+            this.pages.map(function(page) {
                 if (!page.amILoaded()) {
                     return new AjaxGetPage(page);
-                } else {
+                }
+                else {
                     return null;
                 }
-            }).forEach(function (req) {
+            }).forEach(function(req) {
                 if (req) {
                     req.send();
                 }
             });
         },
-        reloadAll: function (content, navigation, footer, article) {
+        reloadAll: function(content, navigation, footer, article) {
             this.pages = [content, navigation, footer, article];
             this.doload();
         },
-        reloadArticle: function (article) {
+        reloadArticle: function(article) {
             article.reset();
             this.pages[PAGESCTS.ARTICLE] = article;
             this.doload();
@@ -198,12 +210,12 @@ Class("PagesCollection", {
 Class("PageArticle", {
     isa: Page,
     methods: {
-        resizeSVG: function () {
+        resizeSVG: function() {
             var maxWidth = utils.getElementById(this.getPlace()).clientWidth;
             console.log('resize SVG in');
 
             this.forEachElementById('svg',
-                function (element) {
+                function(element) {
                     var width = element.clientWidth;
                     var height = element.clientHeight;
                     var newHeight = height * maxWidth / width;
@@ -215,18 +227,18 @@ Class("PageArticle", {
         }
     },
     override: {
-        after_on_success: function () {
+        after_on_success: function() {
             this.resizeSVG();
             this.SUPER();
         },
-        initialize: function (query, place, session, hasCopyright) {
+        initialize: function(query, place, session, hasCopyright) {
             this.SUPER(query, place, session, hasCopyright);
             window.article = this;
         }
     }
 });
 
-var clickdEventListener = function (e) {
+var clickdEventListener = function(e) {
     // cf http://www.sitepoint.com/javascript-this-event-handlers/
     e = e || window.event;
     var myself = e.target || e.srcElement;
@@ -251,24 +263,30 @@ var clickdEventListener = function (e) {
     }
     myself.self.toc_presentation(query);
     console.log('end clickdEventListener')
-    // utils.setUrlInBrowser(href);
+        // utils.setUrlInBrowser(href);
     return false;
 };
 
 Class("PageContent", {
     isa: Page,
     has: {
-        mainQuery: {is: 'n/a', init: null},
-        hasTitle: {is: 'n/a', init: false}
+        mainQuery: {
+            is: 'n/a',
+            init: null
+        },
+        hasTitle: {
+            is: 'n/a',
+            init: false
+        }
     },
     methods: {
-        toc_presentation: function (query) {
+        toc_presentation: function(query) {
             var currentPage = query.getPageName();
             var currentRoot = query.getRoot();
             var url = query.url;
 
             this.forEachElementById('a',
-                function (element) {
+                function(element) {
                     var href = element.getAttribute('href');
                     var query = new Query(href);
 
@@ -283,13 +301,13 @@ Class("PageContent", {
                     }
                 });
         },
-        main_on_sucess: function (result) {
+        main_on_sucess: function(result) {
             var session = this.getSession();
             var currentRoot = this.query.getRoot();
             var self = this;
 
             this.forEachElementById('a',
-                function (element) {
+                function(element) {
                     console.log('add clickdEventListener');
                     element.self = self;
                     element.href = element.getAttribute('href');
@@ -301,22 +319,22 @@ Class("PageContent", {
         }
     },
     override: {
-        initialize: function (query, place, session, mainQuery, hasTitle) {
+        initialize: function(query, place, session, mainQuery, hasTitle) {
             this.SUPER(query, place, session);
             this.mainQuery = mainQuery;
             this.hasTitle = hasTitle;
         },
-        after_on_success: function () {
+        after_on_success: function() {
             this.toc_presentation(this.mainQuery);
             this.SUPER();
         },
-        before_on_success: function (result) {
+        before_on_success: function(result) {
             if (this.hasTitle && config.TOC_TITLE) {
                 result = '<h2>' + config.TOC_TITLE + '</h2>' + result;
             }
             this.SUPER(result);
         },
-        on_success: function (result) {
+        on_success: function(result) {
             if (!jprint.isInPrint()) {
                 this.SUPER(result);
             } else {
@@ -327,31 +345,23 @@ Class("PageContent", {
     }
 });
 
-Class("Session", {
-    has: {
-        query: {is: 'n/a', init: null}
-    },
-    methods: {
-        initialize: function () {
-            this.query = new Query();
-        },
-        load: function () {
-            var broot = this.query.getRoot();
-            allPages = new PagesCollection(new PageContent(new Query('content', broot), 'toc', this, this.query, true),
-                new PageContent(new Query('navigation', broot), 'navigation', this, this.query),
-                new Page(new Query('footer', broot), 'footer', this, true),
-                new Page(new Query('morecontent', broot), 'morecontent', this, true),
-                new PageArticle(this.query, 'article', this));
+function Session() {
+    this.query = new Query();
+}
+Session.prototype.load = function() {
+    var broot = this.query.getRoot();
+    allPages = new PagesCollection(new PageContent(new Query('content', broot), 'toc', this, this.query, true),
+        new PageContent(new Query('navigation', broot), 'navigation', this, this.query),
+        new Page(new Query('footer', broot), 'footer', this, true),
+        new Page(new Query('morecontent', broot), 'morecontent', this, true),
+        new PageArticle(this.query, 'article', this));
 
-            utils.getElementById('site-name').innerHTML = config.SITE_NAME;
-            utils.getElementById('site-description').innerHTML = config.SITE_DESCRIPTION;
-            return this;
-        }
-    }
+    utils.getElementById('site-name').innerHTML = config.SITE_NAME;
+    utils.getElementById('site-description').innerHTML = config.SITE_DESCRIPTION;
+    return this;
+};
 
-});
-
-var resizeEventListener = function (e) {
+var resizeEventListener = function(e) {
     // cf http://www.sitepoint.com/javascript-this-event-handlers/
     e = e || window.event;
     var myself = e.target || e.srcElement;
@@ -367,7 +377,7 @@ function start() {
     var session;
 
     window.article = null;
-    purejsLib.addEvent(window, 'resize', function (e) {
+    purejsLib.addEvent(window, 'resize', function(e) {
         // cf http://www.sitepoint.com/javascript-this-event-handlers/
         e = e || window.event;
         var myself = e.target || e.srcElement;
