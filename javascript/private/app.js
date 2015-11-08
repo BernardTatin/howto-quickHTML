@@ -14,7 +14,7 @@ var _kernel = (function() {
             main_code: 'private/main-purejs.js',
             libs1: ['private/myajax.js'],
             libs2: ['private/jprint.js', 'private/utils.js', 'private/purejs-lib.js'],
-            libname: 'pure Javascript 0.1.2',
+            libname: 'pure Javascript 0.2.0',
             navigator: null
         };
 
