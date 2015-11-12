@@ -33,7 +33,7 @@ if (typeof Ajax.initialized == "undefined") {
         var req = new XMLHttpRequest();
         req.self = this;
         if (req.timeout) {
-            req.timeout = 9000;
+            req.timeout = 3000;
         }
         req.lastState = AjaxStates.IDLE;
         req.open(this.http_request, this.url, true);
