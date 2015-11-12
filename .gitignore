@@ -6,3 +6,4 @@ fonts/*/*.svg
 fonts/*/*.ttf
 fonts/*/*.woff
 pure
+/nbproject/private/
