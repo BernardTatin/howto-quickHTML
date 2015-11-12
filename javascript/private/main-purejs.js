@@ -1,3 +1,6 @@
+/*jshint curly: true, globals: true, forin: true, freeze: true, nocomma: true, es5: true, noempty: true, nonew: true, undef: true, unused: true, strict: true, latedef: true, browser: true*/
+/* globals jprint, utils, config, AjaxGetPage, purejsLib, docReady
+ */
 /*
  * main-purejs.js
  */
