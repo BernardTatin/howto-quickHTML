@@ -5,6 +5,8 @@
  * Created on %<%DATE%>%, %<%TIME%>%
  */
 
+/* global utils */
+
 var jprint = (function() {
     var inPrint = false;
     var oldTocDisplay = false;

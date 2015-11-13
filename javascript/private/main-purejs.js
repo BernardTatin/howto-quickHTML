@@ -5,6 +5,8 @@
  * main-purejs.js
  */
 
+/* global utils, purejsLib, config, jprint */
+
 "use strict";
 
 var PAGESCTS = (function () {
@@ -19,7 +21,7 @@ var PAGESCTS = (function () {
 
 var allPages = null;
 
-
+// QUery class
 function Query(location, root) {
     this.location = location;
     this.root = root;

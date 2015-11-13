@@ -1,3 +1,5 @@
+/* global _kernel */
+
 "use strict";
 var utils = (function() {
     var env = null;

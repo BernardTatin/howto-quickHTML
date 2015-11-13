@@ -2,6 +2,8 @@
  * app.js
  */
 
+/* global LazyLoad */
+
 "use strict";
 
 

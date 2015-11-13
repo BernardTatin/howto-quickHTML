@@ -38,8 +38,8 @@ if (typeof Ajax.initialized == "undefined") {
         req.lastState = AjaxStates.IDLE;
         req.open(this.http_request, this.url, true);
         req.onreadystatechange = function (aEvt) {
-            if (this.readyState == AjaxStates.DONE) {
-                if (this.status == HttpStatus.OK) {
+            if (this.readyState === AjaxStates.DONE) {
+                if (this.status === HttpStatus.OK) {
                     this.self.on_receive(this.responseText);
                 } else {
                     this.self.on_failure("<h1>ERREUR!!!!</h1><h2>Cette page n'existe pas!</h2><p>Vérifiez l'URL!</p>");
