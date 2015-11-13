@@ -28,7 +28,7 @@ function Ajax(url, http_request) {
     this.request = null;
 }
 
-if (typeof Ajax.initialized == "undefined") {
+if (typeof Ajax.initialized === "undefined") {
     Ajax.prototype.createRequest = function () {
         var req = new XMLHttpRequest();
         req.self = this;
@@ -63,7 +63,7 @@ function AjaxGet(url) {
     Ajax.call(this, url, 'GET');
 }
 
-if (typeof AjaxGet.initialized == "undefined") {
+if (typeof AjaxGet.initialized === "undefined") {
     AjaxGet.prototype.__proto__ = Ajax.prototype;
     AjaxGet.initialized = true;
 }
@@ -72,7 +72,7 @@ function AjaxGetPage(page) {
     AjaxGet.call(this, page.fileName());
     this.page = page;
 }
-if (typeof AjaxGetPage.initialized == "undefined") {
+if (typeof AjaxGetPage.initialized === "undefined") {
     AjaxGetPage.prototype.__proto__ = AjaxGet.prototype;
 
     AjaxGetPage.prototype.on_receive = function (data) {

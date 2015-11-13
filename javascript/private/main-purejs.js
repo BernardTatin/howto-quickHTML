@@ -42,7 +42,7 @@ function Query(location, root) {
         this.pageName = this.urlParam('page', config.DEFAULT_PAGE);
     }
 }
-if (typeof Query.initialized == "undefined") {
+if (typeof Query.initialized === "undefined") {
     Query.prototype.urlParam = function (name, default_value) {
         return utils.urlParam(name, this.url, default_value);
     };
@@ -61,7 +61,7 @@ function BasePage(place) {
     this.place = place;
 }
 
-if (typeof BasePage.initialized == "undefined") {
+if (typeof BasePage.initialized === "undefined") {
     BasePage.prototype.getPlace = function () {
         return this.place;
     };
@@ -96,7 +96,7 @@ function Page(query, place, session, hasCopyright) {
     this.session = session;
     this.hasCopyright = hasCopyright;
 }
-if (typeof Page.initialized == "undefined") {
+if (typeof Page.initialized === "undefined") {
     Page.prototype.__proto__ = BasePage.prototype;
 
     Page.prototype.getSession = function () {
@@ -169,7 +169,7 @@ function PagesCollection(content, navigation, footer, article, morecontent) {
     this.pages = null;
     this.reloadAll(content, navigation, footer, article, morecontent);
 }
-if (typeof PagesCollection.initialized == "undefined") {
+if (typeof PagesCollection.initialized === "undefined") {
     PagesCollection.prototype.doload = function () {
         this.pages.map(function (page) {
             if (!page.amILoaded()) {
@@ -200,7 +200,7 @@ function PageArticle(query, place, session, hasCopyright) {
     Page.call(this, query, place, session, hasCopyright);
     window.article = this;
 }
-if (typeof PageArticle.initialized == "undefined") {
+if (typeof PageArticle.initialized === "undefined") {
     PageArticle.prototype.__proto__ = Page.prototype;
     // PageArticle.prototype.mysuper = new Page();
 
@@ -265,7 +265,7 @@ var clickdEventListener = function (e) {
     return false;
 };
 
-if (typeof PageContent.initialized == "undefined") {
+if (typeof PageContent.initialized === "undefined") {
     PageContent.prototype.__proto__ = Page.prototype;
 
     PageContent.prototype.toc_presentation = function (query) {
