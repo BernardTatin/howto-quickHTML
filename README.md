@@ -18,7 +18,7 @@ Just put the content of the <a href="https://github.com/BernardTatin/howto-quick
 
 __Note:__ because I use some _Ajax_ requests, it is easier to use a Web server as Apache, Nginx, Lighttpd.... Some browsers, as _Google Chrome_ can handle these request without it but you had to configure it in a debug mode.
 
-##usage
+## usage
 
 follow the steps you will find in the left column, look at the code, modify it, play with it and have fun!
 
