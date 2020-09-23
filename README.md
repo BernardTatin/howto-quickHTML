@@ -1,4 +1,4 @@
-##IMPORTANT
+## IMPORTANT
 
 This is a work in progress, come back later to get a real stable release.
 
@@ -12,7 +12,7 @@ This work results in a small HTML site showing in a few steps what I have done i
 
 Keep in mind that this work is not targetting big web sites, only a few pages of text or some daily logs produced externally (there will be an exemple somewhere).
 
-##installation
+## installation
 
 Just put the content of the <a href="https://github.com/BernardTatin/howto-quickHTML/archive/master.zip">archive</a> in aplace where your Web Server can  access it.
 
